@@ -444,6 +444,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  position: sticky;
+  top: 100px; 
+  height: fit-content; 
+  align-self: flex-start; 
+  height: calc(100vh - 120px);
 }
 
 .order-sidebar h3 {
@@ -491,9 +497,6 @@ body {
     flex-direction: column;
   }
 
-  .order-sidebar {
-    margin-top: 20px;
-  }
 }
 
 /* Footer */
