@@ -23,13 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Stagger feature items
         if (entry.target.classList.contains("features")) {
           const items = entry.target.querySelectorAll(".feature__item");
-          items.forEach((item, i) => {
-            setTimeout(() => {
-              item.classList.add("reveal-item");
+          if(items.length){
+            items.forEach((item, i) => {
+              setTimeout(() => {
+                item.classList.add("reveal-item");
             }, i * 200);
           });
         }
       }
+    }
     });
   }, { threshold: 0.2 });
 
@@ -92,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const category = activeCategoryBtn.getAttribute('data-category');
       
       menuItems.forEach(item => {
-        const matchesCategory = category === 'all' || item.getAttribute('data-category').includes(category);
+        const matchesCategory = category === 'all' || item.getAttribute('data-category').toLowerCase().includes(category.toLowerCase());
         const matchesSearch = item.querySelector('h3').textContent.toLowerCase().includes(searchValue);
 
         if (matchesCategory && matchesSearch) {
