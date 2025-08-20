@@ -623,11 +623,12 @@ body {
 /* Order Page */
 .checkout-page {
   display: flex;
-  justify-content: center; /* center horizontally */
   gap: 30px;
   padding: 40px 20px;
-  max-width: 1000px; /* overall max width */
-  margin: 0 auto; /* center on page */
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: flex-start; /* FIXED: top align instead of center */
+  padding-bottom: 120px; /* FIXED: prevent sticky footer overlap */
 }
 
 /* Left: Checkout Form */
@@ -636,7 +637,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding-bottom: 80px; 
+  padding-bottom: auto; 
 }
 
 /* Sections: Contact, Deliver, Payment */
@@ -690,6 +691,29 @@ body {
   border-bottom: 1px solid #ddd;
 }
 
+@media screen and (max-width: 960px) {
+  .checkout-page {
+    flex-direction: column;     /* stack form + sidebar */
+    gap: 20px;
+    align-items: center;        /* center items horizontally */
+  }
+
+  .checkout-form {
+    width: 100%;                /* full width by default */
+    max-width: 500px;           /* limit form width for readability */
+  }
+
+  .checkout-sidebar {
+    width: 100%;                /* full width */
+    max-width: none;            /* remove max width */
+    margin: 0;                  /* reset margins */
+    position: static;           /* remove sticky behavior */
+    top: auto;
+    height: auto;
+  }
+}
+
+  
 /* Sidebar renamed to checkout-sidebar */
 .checkout-sidebar {
   flex: 0 0 300px;
@@ -703,10 +727,38 @@ body {
   justify-content: space-between;
 
   position: sticky;
-  top: 100px; 
-  align-self: flex-start; 
-  height: auto; /* Adjust to content */
+  top: 100px;
+  align-self: flex-start;
+  max-height: calc(100vh - 120px); /* FIXED: allow scrolling if too tall */
+  overflow-y: auto; /* FIXED: prevent overflow */
 }
+
+@media screen and (max-width: 960px) {
+  .checkout-page {
+    flex-direction: column;       /* stack form + sidebar */
+    gap: 20px;
+    align-items: center;          /* center items horizontally */
+    width: 100%;                  /* ensure container uses full width */
+    padding: 20px;  
+    padding-bottom: 120px;
+  }
+
+  .checkout-form {
+    width: 100%;                  /* take full available width */
+    max-width: 500px;             /* limit form width for readability */
+    margin: 0 auto;               /* center horizontally */
+  }
+
+  .checkout-sidebar {
+    width: 100%;                  /* full width */
+    max-width: 500px;             /* match form width */
+    margin: 0 auto;               /* center horizontally */
+    position: static;             /* remove sticky behavior */
+    top: auto;
+    height: auto;
+  }
+}
+
 
 .checkout-sidebar h3 {
   margin-bottom: 10px;
