@@ -436,7 +436,8 @@ body {
 
 /* Order Sidebar */
 .order-sidebar {
-  flex: 1;
+  flex: 0 0 300px;
+  width: 300px;
   background: #fff8d6;
   padding: 20px;
   border-radius: 15px;
@@ -494,9 +495,17 @@ body {
 /* Responsive for Mobile */
 @media screen and (max-width: 960px) {
   .menu-page {
-    flex-direction: column;
+    flex-direction: column; /* stack menu + sidebar */
   }
 
+  .order-sidebar {
+    position: static;     /* disable sticky */
+    top: auto;
+    height: auto;         /* shrink naturally */
+    width: 100%;          /* full width */
+    max-width: none;
+    margin-top: 20px;
+  }
 }
 
 /* Footer */
