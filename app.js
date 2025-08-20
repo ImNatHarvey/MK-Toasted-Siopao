@@ -40,5 +40,27 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 
+// Subcategory filter
+const categoryButtons = document.querySelectorAll(".menu-categories button");
+const menuItems = document.querySelectorAll(".menu-item");
+
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const category = button.getAttribute("data-category");
+
+    menuItems.forEach(item => {
+      if (category === "all" || item.getAttribute("data-category").includes(category)) {
+        item.style.display = "block"; // Show
+      } else {
+        item.style.display = "none"; // Hide
+      }
+    });
+
+    // Highlight active category button
+    categoryButtons.forEach(btn => btn.classList.remove("active-category"));
+    button.classList.add("active-category");
+  });
+})
+
 reveals.forEach((reveal) => observer.observe(reveal));
 
