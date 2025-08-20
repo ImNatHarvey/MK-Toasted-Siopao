@@ -47,8 +47,23 @@ body {
   transition: transform 0.3s ease;
 }
 
-#navbar__logo:hover {
-  transform: scale(1.1) rotate(-10deg);
+.logo-rotate {
+  display: inline-block;
+  transition: transform 0.6s ease;
+}
+
+.logo-rotate:hover {
+  transform: rotate(360deg); /* only MK rotates */
+}
+
+.logo-text {
+  font-size: 1.1rem;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.logo-text:hover {
+  color: #e07a5f; /* acts like nav link hover */
 }
 
 .navbar__menu {
