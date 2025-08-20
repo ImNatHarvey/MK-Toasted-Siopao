@@ -40,27 +40,29 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 
-// Subcategory filter
+// Observe all reveal elements
+reveals.forEach((reveal) => observer.observe(reveal));
+
+// Subcategory filter (menu.html only)
 const categoryButtons = document.querySelectorAll(".menu-categories button");
 const menuItems = document.querySelectorAll(".menu-item");
 
-categoryButtons.forEach(button => {
-  button.addEventListener("click", () => {
-    const category = button.getAttribute("data-category");
+if (categoryButtons.length) {
+  categoryButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const category = button.getAttribute("data-category");
 
-    menuItems.forEach(item => {
-      if (category === "all" || item.getAttribute("data-category").includes(category)) {
-        item.style.display = "block"; // Show
-      } else {
-        item.style.display = "none"; // Hide
-      }
+      menuItems.forEach(item => {
+        if (category === "all" || item.getAttribute("data-category").includes(category)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      });
+
+      // Highlight active category button
+      categoryButtons.forEach(btn => btn.classList.remove("active-category"));
+      button.classList.add("active-category");
     });
-
-    // Highlight active category button
-    categoryButtons.forEach(btn => btn.classList.remove("active-category"));
-    button.classList.add("active-category");
   });
-})
-
-reveals.forEach((reveal) => observer.observe(reveal));
-
+}
