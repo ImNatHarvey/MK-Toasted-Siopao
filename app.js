@@ -11,10 +11,11 @@ menu.addEventListener('click', () => {
 // Reveal animation
 const reveals = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      entry.target.classList.add("active");
+      entry.target.classList.add("active", "revealed"); // Keep track
+      observer.unobserve(entry.target); // Stop observing once revealed
 
       // Extra: stagger items inside features section
       if (entry.target.classList.contains("features")) {
@@ -25,44 +26,30 @@ const observer = new IntersectionObserver((entries) => {
           }, i * 200); // delay each card by 200ms
         });
       }
-
-    } else {
-      // Reset when out of view
-      entry.target.classList.remove("active");
-
-      if (entry.target.classList.contains("features")) {
-        const items = entry.target.querySelectorAll(".feature__item");
-        items.forEach((item) => {
-          item.classList.remove("reveal-item");
-        });
-      }
     }
   });
 }, { threshold: 0.2 });
 
-// Observe all reveal elements
-reveals.forEach((reveal) => observer.observe(reveal));
-
-// Subcategory filter (menu.html only)
+// Subcategory filter
 const categoryButtons = document.querySelectorAll(".menu-categories button");
 const menuItems = document.querySelectorAll(".menu-item");
 
-if (categoryButtons.length) {
-  categoryButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      const category = button.getAttribute("data-category");
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const category = button.getAttribute("data-category");
 
-      menuItems.forEach(item => {
-        if (category === "all" || item.getAttribute("data-category").includes(category)) {
-          item.style.display = "block";
-        } else {
-          item.style.display = "none";
-        }
-      });
-
-      // Highlight active category button
-      categoryButtons.forEach(btn => btn.classList.remove("active-category"));
-      button.classList.add("active-category");
+    menuItems.forEach(item => {
+      if (category === "all" || item.getAttribute("data-category").includes(category)) {
+        item.style.display = "block"; // Show
+      } else {
+        item.style.display = "none"; // Hide
+      }
     });
+
+    // Highlight active category button
+    categoryButtons.forEach(btn => btn.classList.remove("active-category"));
+    button.classList.add("active-category");
   });
-}
+});
+
+reveals.forEach((reveal) => observer.observe(reveal));
