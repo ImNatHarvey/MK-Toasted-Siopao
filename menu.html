@@ -6,6 +6,13 @@
   <title>Menu - MK Toasted Siopao</title>
   <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
   <link rel="stylesheet" href="styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
   <!-- Navbar -->
@@ -34,13 +41,23 @@
   <section class="menu-page reveal">
     <!-- Left Side: Menu Content -->
     <div class="menu-content">
-      <!-- Subcategories -->
-      <div class="menu-categories">
-        <button data-category="all">All</button>
-        <button data-category="favorites">Favorites</button>
-        <button data-category="combo">Combo</button>
-        <button data-category="siopao">Siopao</button>
-        <button data-category="drinks">Drinks</button>
+      <!-- Subcategories + Search -->
+      <div class="menu-header">
+        <div class="menu-categories">
+          <button data-category="all" class="active-category">All</button>
+          <button data-category="favorites">Favorites</button>
+          <button data-category="combo">Combo</button>
+          <button data-category="siopao">Siopao</button>
+          <button data-category="drinks">Drinks</button>
+        </div>
+
+        <form action="" class="search-form">
+          <input type="text" placeholder="Search menu..." class="search-input" />
+          <div class="search-button">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <i class="fa-solid fa-xmark search-close"></i>
+          </div>
+        </form>
       </div>
 
       <!-- Food Grid -->
