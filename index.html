@@ -8,11 +8,13 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Navbar -->
+  <div id="particles-bg"></div>
+  <!-- Navigation Bar -->
   <nav class="navbar reveal">
+    <div id="particles-js"></div> 
     <div class="navbar__container">
-      <a href="/index.html" id="navbar__logo">
-        <span class="logo-rotate">MK</span>
+      <a href="/index.html" class="logo">
+        <span class="logo-mk">MK</span>
         <span class="logo-text">Toasted Siopao</span>
       </a>
       <div class="navbar__toggle" id="mobile-menu">
@@ -24,13 +26,15 @@
         <li class="navbar__item"><a href="/index.html" class="navbar__links">Home</a></li>
         <li class="navbar__item"><a href="/menu.html" class="navbar__links">Menu</a></li>
         <li class="navbar__item"><a href="/order.html" class="navbar__links">Orders</a></li>
+        <li class="navbar__item"><a href="" class="navbar__links">About Us</a></li>
+        <li class="navbar__item"><a href="" class="navbar__links">Contact Us</a></li>
         <li class="navbar__btn"><a href="/" class="button">Sign Up</a></li>
         <li class="navbar__btn"><a href="/" class="button">Log In</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Carousel -->
+  <!-- Hero Carousel - Slideshow -->
   <section class="hero reveal">
     <div class="carousel">
       <div class="slide" style="background-color: #ffd84d;"></div>
@@ -43,10 +47,10 @@
   <section class="features reveal">
     <h2>Our Favorites</h2>
     <div class="features__grid">
-      <div class="feature__item">🍔 Burger</div>
+      <div class="feature__item"style="background-image: url('Images/Carousel1.jpeg');">🥯 Siopao</div>
       <div class="feature__item">🍟 Fries</div>
+      <div class="feature__item">🍔 Burger</div>
       <div class="feature__item">🥤 Drinks</div>
-      <div class="feature__item" style="background-image: url('Images/Carousel1.jpeg');">🥯 Toasted Siopao</div>
     </div>
   </section>
 
@@ -75,7 +79,7 @@
   <!-- Call to Action -->
   <section class="cta reveal">
     <h2>Order Now & Taste the Difference!</h2>
-    <button class="button cta-btn">Order Here</button>
+    <a href="menu.html" class="button cta-btn">Proceed to Checkout</a>
   </section>
 
   <!-- Footer -->
@@ -84,6 +88,7 @@
   </footer>
 
   <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
