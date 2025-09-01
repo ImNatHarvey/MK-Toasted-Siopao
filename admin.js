@@ -284,3 +284,196 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+    // Sample data for announcements (in a real app, this would come from a database)
+    let announcements = [
+      {
+        id: 1,
+        title: "Special Promotion",
+        description: "Buy one get one free on all toasted siopao every Friday!",
+        date: "2025-03-15",
+        time: "14:30",
+        image: null
+      },
+      {
+        id: 2,
+        title: "New Branch Opening",
+        description: "We're excited to announce our new branch in Makati opening next month!",
+        date: "2025-03-20",
+        time: "10:00",
+        image: null
+      }
+    ];
+
+    // DOM elements
+    const announcementList = document.getElementById('announcement-list');
+    const createBtn = document.getElementById('create-announcement-btn');
+    const modal = document.getElementById('announcement-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const announcementForm = document.getElementById('announcement-form');
+    const announcementId = document.getElementById('announcement-id');
+    const titleInput = document.getElementById('announcement-title');
+    const descriptionInput = document.getElementById('announcement-description');
+    const dateInput = document.getElementById('announcement-date');
+    const timeInput = document.getElementById('announcement-time');
+    const imageInput = document.getElementById('announcement-image');
+    const imagePreview = document.getElementById('image-preview');
+
+    // Display announcements
+    function displayAnnouncements() {
+      announcementList.innerHTML = '';
+      
+      if (announcements.length === 0) {
+        announcementList.innerHTML = '<p>No announcements yet.</p>';
+        return;
+      }
+      
+      announcements.forEach(announcement => {
+        const announcementCard = document.createElement('div');
+        announcementCard.className = 'announcement-card';
+        
+        const dateTime = new Date(`${announcement.date}T${announcement.time}`);
+        const formattedDate = dateTime.toLocaleDateString();
+        const formattedTime = dateTime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        
+        announcementCard.innerHTML = `
+          <h3>${announcement.title}</h3>
+          <div class="announcement-meta">${formattedDate} at ${formattedTime}</div>
+          <p>${announcement.description}</p>
+          ${announcement.image ? `<img src="${announcement.image}" class="announcement-image" alt="Announcement image">` : ''}
+          <div class="announcement-actions">
+            <button class="edit-btn" data-id="${announcement.id}">Edit</button>
+            <button class="delete-btn" data-id="${announcement.id}">Delete</button>
+          </div>
+        `;
+        
+        announcementList.appendChild(announcementCard);
+      });
+      
+      // Add event listeners to edit and delete buttons
+      document.querySelectorAll('.edit-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = parseInt(e.target.dataset.id);
+          editAnnouncement(id);
+        });
+      });
+      
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const id = parseInt(e.target.dataset.id);
+          deleteAnnouncement(id);
+        });
+      });
+    }
+
+    // Create new announcement
+    function createAnnouncement() {
+      modalTitle.textContent = 'Create Announcement';
+      announcementForm.reset();
+      announcementId.value = '';
+      imagePreview.style.display = 'none';
+      modal.style.display = 'flex';
+    }
+
+    // Edit announcement
+    function editAnnouncement(id) {
+      const announcement = announcements.find(a => a.id === id);
+      if (!announcement) return;
+      
+      modalTitle.textContent = 'Edit Announcement';
+      announcementId.value = announcement.id;
+      titleInput.value = announcement.title;
+      descriptionInput.value = announcement.description;
+      dateInput.value = announcement.date;
+      timeInput.value = announcement.time;
+      
+      if (announcement.image) {
+        imagePreview.src = announcement.image;
+        imagePreview.style.display = 'block';
+      } else {
+        imagePreview.style.display = 'none';
+      }
+      
+      modal.style.display = 'flex';
+    }
+
+    // Delete announcement
+    function deleteAnnouncement(id) {
+      if (confirm('Are you sure you want to delete this announcement?')) {
+        announcements = announcements.filter(a => a.id !== id);
+        displayAnnouncements();
+      }
+    }
+
+    // Save announcement (create or update)
+    function saveAnnouncement(e) {
+      e.preventDefault();
+      
+      const id = announcementId.value ? parseInt(announcementId.value) : Date.now();
+      const title = titleInput.value;
+      const description = descriptionInput.value;
+      const date = dateInput.value;
+      const time = timeInput.value;
+      
+      let image = null;
+      if (imageInput.files && imageInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          image = e.target.result;
+          completeSave(id, title, description, date, time, image);
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+      } else {
+        // If no new image selected, keep the existing one if editing
+        const existingAnnouncement = announcements.find(a => a.id === id);
+        image = existingAnnouncement ? existingAnnouncement.image : null;
+        completeSave(id, title, description, date, time, image);
+      }
+    }
+
+    function completeSave(id, title, description, date, time, image) {
+      const announcementIndex = announcements.findIndex(a => a.id === id);
+      
+      if (announcementIndex !== -1) {
+        // Update existing announcement
+        announcements[announcementIndex] = {
+          id, title, description, date, time, image
+        };
+      } else {
+        // Add new announcement
+        announcements.push({
+          id, title, description, date, time, image
+        });
+      }
+      
+      displayAnnouncements();
+      modal.style.display = 'none';
+    }
+
+    // Image preview
+    imageInput.addEventListener('change', function() {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+          imagePreview.style.display = 'block';
+        };
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+
+    // Event listeners
+    createBtn.addEventListener('click', createAnnouncement);
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+    announcementForm.addEventListener('submit', saveAnnouncement);
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Initialize
+    displayAnnouncements();
