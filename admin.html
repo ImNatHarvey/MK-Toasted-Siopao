@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Toasted Siopao - Admin Dashboard</title>
+  <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar reveal">
+    <div class="navbar__container">
+      <a href="index.html" class="logo">
+        <span class="logo-mk">MK</span>
+        <span class="logo-text">Toasted Siopao</span>
+      </a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item"><a href="admin.html" class="navbar__links active">Admin</a></li>
+        <li class="navbar__btn"><a href="/" class="button">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Admin Dashboard -->
+  <main class="admin-dashboard reveal">
+    <h1>Admin Dashboard</h1>
+    
+    <!-- Summary Cards -->
+    <section class="dashboard-summary">
+      <div class="summary-card">
+        <h3>Daily Orders</h3>
+        <p class="summary-value" id="daily-orders">0</p>
+        <p class="summary-change">+12% from yesterday</p>
+      </div>
+      <div class="summary-card">
+        <h3>Daily Revenue</h3>
+        <p class="summary-value" id="daily-revenue">₱0</p>
+        <p class="summary-change">+8% from yesterday</p>
+      </div>
+      <div class="summary-card">
+        <h3>Daily Sales</h3>
+        <p class="summary-value" id="daily-sales">0</p>
+        <p class="summary-change">+5% from yesterday</p>
+      </div>
+    </section>
+
+    <!-- Report Generator -->
+    <section class="report-generator">
+      <h2>Ingredient Usage Report</h2>
+      <form id="report-form">
+        <div class="form-group">
+          <label for="start-date">Start Date:</label>
+          <input type="date" id="start-date" required>
+        </div>
+        <div class="form-group">
+          <label for="end-date">End Date:</label>
+          <input type="date" id="end-date" required>
+        </div>
+        <button type="submit" class="button">Generate Report</button>
+      </form>
+      <div id="report-results" class="report-results"></div>
+    </section>
+
+    <!-- Navigation Cards -->
+    <section class="admin-navigation">
+      <h2>Quick Navigation</h2>
+      <div class="nav-grid">
+        <a href="/order-management.html" class="nav-card">
+          <h3>Order Management</h3>
+          <p>View and manage customer orders</p>
+        </a>
+        <a href="/customer-management.html" class="nav-card">
+          <h3>Customer Management</h3>
+          <p>Manage customer accounts and data</p>
+        </a>
+        <a href="/product-management.html" class="nav-card">
+          <h3>Product Management</h3>
+          <p>Update menu items and pricing</p>
+        </a>
+        <a href="/inventory-management.html" class="nav-card">
+          <h3>Inventory Management</h3>
+          <p>Track and manage ingredient stock</p>
+        </a>
+        <a href="/transaction-history.html" class="nav-card">
+          <h3>Transaction History</h3>
+          <p>View all transaction records</p>
+        </a>
+        <a href="/site-management.html" class="nav-card">
+          <h3>Site Management</h3>
+          <p>Configure website settings</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer reveal">
+    <p>&copy; 2025 MK Toasted Siopao. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

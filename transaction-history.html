@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Toasted Siopao - Transaction History</title>
+  <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="transaction-history.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar reveal">
+    <div class="navbar__container">
+      <a href="index.html" class="logo">
+        <span class="logo-mk">MK</span>
+        <span class="logo-text">Toasted Siopao</span>
+      </a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item"><a href="admin.html" class="navbar__links">Admin</a></li>
+        <li class="navbar__btn"><a href="/" class="button">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Transaction History -->
+  <main class="management-page reveal">
+    <div class="page-header">
+      <h1>Transaction History</h1>
+      <div class="header-actions">
+        <div class="date-filter">
+          <label for="start-date">From:</label>
+          <input type="date" id="start-date">
+          <label for="end-date">To:</label>
+          <input type="date" id="end-date">
+          <button class="button">Apply</button>
+        </div>
+        <button class="button">Export CSV</button>
+      </div>
+    </div>
+
+    <div class="management-content">
+      <div class="transaction-stats">
+        <div class="stat-card">
+          <h3>Total Transactions</h3>
+          <p class="stat-value">1,158</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Revenue</h3>
+          <p class="stat-value">₱145,820</p>
+        </div>
+        <div class="stat-card">
+          <h3>Average Order Value</h3>
+          <p class="stat-value">₱126</p>
+        </div>
+        <div class="stat-card">
+          <h3>Refunds</h3>
+          <p class="stat-value">₱2,450</p>
+        </div>
+      </div>
+
+      <div class="transactions-table">
+        <div class="table-header">
+          <div class="col-id">Transaction ID</div>
+          <div class="col-date">Date</div>
+          <div class="col-customer">Customer</div>
+          <div class="col-amount">Amount</div>
+          <div class="col-method">Payment Method</div>
+          <div class="col-status">Status</div>
+          <div class="col-actions">Actions</div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-id">#TXN-45892</div>
+          <div class="col-date">Sep 1, 2025 14:30</div>
+          <div class="col-customer">Juan Dela Cruz</div>
+          <div class="col-amount">₱150</div>
+          <div class="col-method">GCash</div>
+          <div class="col-status"><span class="status-badge completed">Completed</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn receipt-btn">Receipt</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-id">#TXN-45891</div>
+          <div class="col-date">Sep 1, 2025 13:15</div>
+          <div class="col-customer">Maria Santos</div>
+          <div class="col-amount">₱240</div>
+          <div class="col-method">Credit Card</div>
+          <div class="col-status"><span class="status-badge completed">Completed</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn receipt-btn">Receipt</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-id">#TXN-45890</div>
+          <div class="col-date">Sep 1, 2025 12:05</div>
+          <div class="col-customer">Robert Lim</div>
+          <div class="col-amount">₱120</div>
+          <div class="col-method">Cash</div>
+          <div class="col-status"><span class="status-badge completed">Completed</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn receipt-btn">Receipt</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-id">#TXN-45889</div>
+          <div class="col-date">Sep 1, 2025 11:20</div>
+          <div class="col-customer">Anna Reyes</div>
+          <div class="col-amount">₱200</div>
+          <div class="col-method">GCash</div>
+          <div class="col-status"><span class="status-badge refunded">Refunded</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn receipt-btn">Receipt</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="pagination-btn">Previous</button>
+        <span class="pagination-page">Page 1 of 12</span>
+        <button class="pagination-btn">Next</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer reveal">
+    <p>&copy; 2025 MK Toasted Siopao. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Toasted Siopao - Site Management</title>
+  <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="site-management.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar reveal">
+    <div class="navbar__container">
+      <a href="index.html" class="logo">
+        <span class="logo-mk">MK</span>
+        <span class="logo-text">Toasted Siopao</span>
+      </a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item"><a href="admin.html" class="navbar__links">Admin</a></li>
+        <li class="navbar__btn"><a href="/" class="button">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Site Management -->
+  <main class="management-page reveal">
+    <div class="page-header">
+      <h1>Site Management</h1>
+    </div>
+
+    <div class="management-content">
+      <div class="site-sections">
+        <div class="site-section">
+          <h2>Homepage Content</h2>
+          <div class="section-content">
+            <div class="form-group">
+              <label for="hero-title">Hero Title</label>
+              <input type="text" id="hero-title" value="MK Toasted Siopao" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="hero-subtitle">Hero Subtitle</label>
+              <input type="text" id="hero-subtitle" value="Crispy outside, savory inside!" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="promo-text">Promo Text</label>
+              <textarea id="promo-text" class="form-control">Get 2 Toasted Siopao + 1 Drink for only ₱99</textarea>
+            </div>
+            <button class="button">Save Changes</button>
+          </div>
+        </div>
+
+        <div class="site-section">
+          <h2>Business Information</h2>
+          <div class="section-content">
+            <div class="form-group">
+              <label for="business-name">Business Name</label>
+              <input type="text" id="business-name" value="MK Toasted Siopao" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="business-address">Address</label>
+              <textarea id="business-address" class="form-control">123 Food Street, Mandaluyong City, Philippines</textarea>
+            </div>
+            <div class="form-group">
+              <label for="business-phone">Phone Number</label>
+              <input type="text" id="business-phone" value="+63 912 345 6789" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="business-email">Email Address</label>
+              <input type="email" id="business-email" value="info@mktoastedsiopao.com" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="business-hours">Business Hours</label>
+              <textarea id="business-hours" class="form-control">Monday to Saturday: 9:00 AM - 9:00 PM
+Sunday: 10:00 AM - 7:00 PM</textarea>
+            </div>
+            <button class="button">Save Changes</button>
+          </div>
+        </div>
+
+        <div class="site-section">
+          <h2>Social Media Links</h2>
+          <div class="section-content">
+            <div class="form-group">
+              <label for="facebook-url">Facebook</label>
+              <input type="url" id="facebook-url" value="https://facebook.com/mktoastedsiopao" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="instagram-url">Instagram</label>
+              <input type="url" id="instagram-url" value="https://instagram.com/mktoastedsiopao" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="twitter-url">Twitter</label>
+              <input type="url" id="twitter-url" value="https://twitter.com/mktoastedsiopao" class="form-control">
+            </div>
+            <button class="button">Save Changes</button>
+          </div>
+        </div>
+
+        <div class="site-section">
+          <h2>Site Maintenance</h2>
+          <div class="section-content">
+            <div class="form-group toggle-group">
+              <label for="maintenance-mode">Maintenance Mode</label>
+              <label class="switch">
+                <input type="checkbox" id="maintenance-mode">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="maintenance-message">Maintenance Message</label>
+              <textarea id="maintenance-message" class="form-control">We're currently performing maintenance. We'll be back soon!</textarea>
+            </div>
+            <button class="button">Clear Cache</button>
+            <button class="button">Backup Database</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer reveal">
+    <p>&copy; 2025 MK Toasted Siopao. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

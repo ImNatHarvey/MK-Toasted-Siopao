@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Toasted Siopao - Inventory Management</title>
+  <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="inventory-management.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar reveal">
+    <div class="navbar__container">
+      <a href="index.html" class="logo">
+        <span class="logo-mk">MK</span>
+        <span class="logo-text">Toasted Siopao</span>
+      </a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item"><a href="admin.html" class="navbar__links">Admin</a></li>
+        <li class="navbar__btn"><a href="/" class="button">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Inventory Management -->
+  <main class="management-page reveal">
+    <div class="page-header">
+      <h1>Inventory Management</h1>
+      <div class="header-actions">
+        <div class="search-form">
+          <input type="text" class="search-input">
+          <button class="search-button">🔍</button>
+        </div>
+        <button class="button">Add Item</button>
+        <button class="button">Low Stock Report</button>
+      </div>
+    </div>
+
+    <div class="management-content">
+      <div class="inventory-stats">
+        <div class="stat-card">
+          <h3>Total Items</h3>
+          <p class="stat-value">48</p>
+        </div>
+        <div class="stat-card warning">
+          <h3>Low Stock Items</h3>
+          <p class="stat-value">7</p>
+        </div>
+        <div class="stat-card danger">
+          <h3>Out of Stock</h3>
+          <p class="stat-value">3</p>
+        </div>
+        <div class="stat-card">
+          <h3>Inventory Value</h3>
+          <p class="stat-value">₱12,580</p>
+        </div>
+      </div>
+
+      <div class="inventory-table">
+        <div class="table-header">
+          <div class="col-name">Item Name</div>
+          <div class="col-category">Category</div>
+          <div class="col-stock">Current Stock</div>
+          <div class="col-unit">Unit</div>
+          <div class="col-threshold">Low Stock Threshold</div>
+          <div class="col-status">Status</div>
+          <div class="col-actions">Actions</div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-name">Flour</div>
+          <div class="col-category">Dry Ingredients</div>
+          <div class="col-stock">25 kg</div>
+          <div class="col-unit">kg</div>
+          <div class="col-threshold">5 kg</div>
+          <div class="col-status"><span class="status-badge ok">OK</span></div>
+          <div class="col-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn adjust-btn">Adjust</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-name">Pork</div>
+          <div class="col-category">Meat</div>
+          <div class="col-stock">8 kg</div>
+          <div class="col-unit">kg</div>
+          <div class="col-threshold">10 kg</div>
+          <div class="col-status"><span class="status-badge low">Low</span></div>
+          <div class="col-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn adjust-btn">Adjust</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-name">Yeast</div>
+          <div class="col-category">Dry Ingredients</div>
+          <div class="col-stock">0.5 kg</div>
+          <div class="col-unit">kg</div>
+          <div class="col-threshold">1 kg</div>
+          <div class="col-status"><span class="status-badge critical">Critical</span></div>
+          <div class="col-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn adjust-btn">Adjust</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-name">Burger Buns</div>
+          <div class="col-category">Bakery</div>
+          <div class="col-stock">0</div>
+          <div class="col-unit">pcs</div>
+          <div class="col-threshold">20 pcs</div>
+          <div class="col-status"><span class="status-badge out">Out of Stock</span></div>
+          <div class="col-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn adjust-btn">Adjust</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="pagination-btn">Previous</button>
+        <span class="pagination-page">Page 1 of 4</span>
+        <button class="pagination-btn">Next</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer reveal">
+    <p>&copy; 2025 MK Toasted Siopao. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

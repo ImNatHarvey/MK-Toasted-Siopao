@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Toasted Siopao - Product Management</title>
+  <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="product-management.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar reveal">
+    <div class="navbar__container">
+      <a href="index.html" class="logo">
+        <span class="logo-mk">MK</span>
+        <span class="logo-text">Toasted Siopao</span>
+      </a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item"><a href="admin.html" class="navbar__links">Admin</a></li>
+        <li class="navbar__btn"><a href="/" class="button">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Product Management -->
+  <main class="management-page reveal">
+    <div class="page-header">
+      <h1>Product Management</h1>
+      <div class="header-actions">
+        <div class="search-form">
+          <input type="text" class="search-input">
+          <button class="search-button">🔍</button>
+        </div>
+        <button class="button">Add Product</button>
+      </div>
+    </div>
+
+    <div class="management-content">
+      <div class="category-filters">
+        <button class="category-filter active" data-category="all">All Products</button>
+        <button class="category-filter" data-category="siopao">Siopao</button>
+        <button class="category-filter" data-category="fries">Fries</button>
+        <button class="category-filter" data-category="burger">Burger</button>
+        <button class="category-filter" data-category="drinks">Drinks</button>
+        <button class="category-filter" data-category="combo">Combos</button>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/Images/Carousel1.jpeg" alt="Toasted Siopao">
+          </div>
+          <div class="product-info">
+            <h3>Toasted Siopao</h3>
+            <p class="product-price">₱60</p>
+            <p class="product-category">Siopao</p>
+            <p class="product-status available">In Stock</p>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/Images/Carousel2.png" alt="French Fries">
+          </div>
+          <div class="product-info">
+            <h3>French Fries</h3>
+            <p class="product-price">₱50</p>
+            <p class="product-category">Fries</p>
+            <p class="product-status available">In Stock</p>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/Images/Carousel1.jpeg" alt="Classic Burger">
+          </div>
+          <div class="product-info">
+            <h3>Classic Burger</h3>
+            <p class="product-price">₱70</p>
+            <p class="product-category">Burger</p>
+            <p class="product-status low-stock">Low Stock</p>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/Images/Carousel2.png" alt="Iced Tea">
+          </div>
+          <div class="product-info">
+            <h3>Iced Tea</h3>
+            <p class="product-price">₱30</p>
+            <p class="product-category">Drinks</p>
+            <p class="product-status available">In Stock</p>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <img src="/Images/Carousel1.jpeg" alt="Siopao Combo">
+          </div>
+          <div class="product-info">
+            <h3>Siopao Combo</h3>
+            <p class="product-price">₱99</p>
+            <p class="product-category">Combo</p>
+            <p class="product-status out-of-stock">Out of Stock</p>
+          </div>
+          <div class="product-actions">
+            <button class="action-btn edit-btn">Edit</button>
+            <button class="action-btn delete-btn">Delete</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="pagination-btn">Previous</button>
+        <span class="pagination-page">Page 1 of 3</span>
+        <button class="pagination-btn">Next</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer reveal">
+    <p>&copy; 2025 MK Toasted Siopao. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

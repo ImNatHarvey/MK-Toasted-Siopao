@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MK Toasted Siopao - Order Management</title>
+  <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="order-management.css" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar reveal">
+    <div class="navbar__container">
+      <a href="index.html" class="logo">
+        <span class="logo-mk">MK</span>
+        <span class="logo-text">Toasted Siopao</span>
+      </a>
+      <div class="navbar__toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="navbar__menu">
+        <li class="navbar__item"><a href="admin.html" class="navbar__links">Admin</a></li>
+        <li class="navbar__btn"><a href="/" class="button">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Order Management -->
+  <main class="management-page reveal">
+    <div class="page-header">
+      <h1>Order Management</h1>
+      <div class="header-actions">
+        <div class="search-form">
+          <input type="text" class="search-input">
+          <button class="search-button">🔍</button>
+        </div>
+        <button class="button filter-btn">Filter</button>
+      </div>
+    </div>
+
+    <div class="management-content">
+      <div class="status-filters">
+        <button class="status-filter active" data-status="all">All Orders</button>
+        <button class="status-filter" data-status="pending">Pending</button>
+        <button class="status-filter" data-status="preparing">Preparing</button>
+        <button class="status-filter" data-status="delivery">Out for Delivery</button>
+        <button class="status-filter" data-status="completed">Completed</button>
+        <button class="status-filter" data-status="cancelled">Cancelled</button>
+      </div>
+
+      <div class="orders-table">
+        <div class="table-header">
+          <div class="col-order-id">Order ID</div>
+          <div class="col-customer">Customer</div>
+          <div class="col-items">Items</div>
+          <div class="col-total">Total</div>
+          <div class="col-date">Date</div>
+          <div class="col-status">Status</div>
+          <div class="col-actions">Actions</div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-order-id">#ORD-1025</div>
+          <div class="col-customer">Juan Dela Cruz</div>
+          <div class="col-items">2 Toasted Siopao, 1 Fries</div>
+          <div class="col-total">₱150</div>
+          <div class="col-date">Sep 1, 2025</div>
+          <div class="col-status"><span class="status-badge preparing">Preparing</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn edit-btn">Update</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-order-id">#ORD-1024</div>
+          <div class="col-customer">Maria Santos</div>
+          <div class="col-items">3 Toasted Siopao, 2 Drinks</div>
+          <div class="col-total">₱240</div>
+          <div class="col-date">Sep 1, 2025</div>
+          <div class="col-status"><span class="status-badge pending">Pending</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn edit-btn">Update</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-order-id">#ORD-1023</div>
+          <div class="col-customer">Robert Lim</div>
+          <div class="col-items">1 Burger, 1 Fries</div>
+          <div class="col-total">₱120</div>
+          <div class="col-date">Aug 31, 2025</div>
+          <div class="col-status"><span class="status-badge delivery">Out for Delivery</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn edit-btn">Update</button>
+          </div>
+        </div>
+
+        <div class="table-row">
+          <div class="col-order-id">#ORD-1022</div>
+          <div class="col-customer">Anna Reyes</div>
+          <div class="col-items">4 Toasted Siopao</div>
+          <div class="col-total">₱200</div>
+          <div class="col-date">Aug 31, 2025</div>
+          <div class="col-status"><span class="status-badge completed">Completed</span></div>
+          <div class="col-actions">
+            <button class="action-btn view-btn">View</button>
+            <button class="action-btn edit-btn">Update</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="pagination-btn">Previous</button>
+        <span class="pagination-page">Page 1 of 5</span>
+        <button class="pagination-btn">Next</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Order Detail Modal (hidden by default) -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Order Details #ORD-1025</h2>
+      <div class="order-details">
+        <!-- Order details would go here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer reveal">
+    <p>&copy; 2025 MK Toasted Siopao. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
