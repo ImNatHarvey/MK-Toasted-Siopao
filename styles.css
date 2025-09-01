@@ -2738,3 +2738,43 @@ body {
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 15px;
     }
+
+     .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .accept-btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .reject-btn {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .view-btn {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .status-badge.pending {
+      background-color: #FF9800;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+    }

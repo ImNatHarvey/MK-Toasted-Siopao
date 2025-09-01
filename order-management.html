@@ -6,7 +6,7 @@
   <title>MK Toasted Siopao - Order Management</title>
   <link href="/Images/favicon.ico" rel="icon" type="image/x-icon">
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="order-management.css" />
+
 </head>
 <body>
   <!-- Navigation Bar -->
@@ -44,11 +44,9 @@
     <div class="management-content">
       <div class="status-filters">
         <button class="status-filter active" data-status="all">All Orders</button>
-        <button class="status-filter" data-status="pending">Pending</button>
-        <button class="status-filter" data-status="preparing">Preparing</button>
-        <button class="status-filter" data-status="delivery">Out for Delivery</button>
+        <button class="status-filter" data-status="pending">Accepted</button>
+        <button class="status-filter" data-status="cancelled">Rejected</button>
         <button class="status-filter" data-status="completed">Completed</button>
-        <button class="status-filter" data-status="cancelled">Cancelled</button>
       </div>
 
       <div class="orders-table">
@@ -62,16 +60,18 @@
           <div class="col-actions">Actions</div>
         </div>
 
+        <!-- Order rows with action buttons -->
         <div class="table-row">
           <div class="col-order-id">#ORD-1025</div>
           <div class="col-customer">Juan Dela Cruz</div>
           <div class="col-items">2 Toasted Siopao, 1 Fries</div>
           <div class="col-total">₱150</div>
           <div class="col-date">Sep 1, 2025</div>
-          <div class="col-status"><span class="status-badge preparing">Preparing</span></div>
+          <div class="col-status"><span class="status-badge preparing">Accepted</span></div>
           <div class="col-actions">
-            <button class="action-btn view-btn">View</button>
-            <button class="action-btn edit-btn">Update</button>
+            <div class="action-buttons">
+              <button class="view-btn" onclick="viewOrderDetails('ORD-1025')">View</button>
+            </div>
           </div>
         </div>
 
@@ -83,8 +83,11 @@
           <div class="col-date">Sep 1, 2025</div>
           <div class="col-status"><span class="status-badge pending">Pending</span></div>
           <div class="col-actions">
-            <button class="action-btn view-btn">View</button>
-            <button class="action-btn edit-btn">Update</button>
+            <div class="action-buttons">
+              <button class="accept-btn" onclick="acceptOrder('ORD-1024')">Accept</button>
+              <button class="reject-btn" onclick="rejectOrder('ORD-1024')">Reject</button>
+              <button class="view-btn" onclick="viewOrderDetails('ORD-1024')">View</button>
+            </div>
           </div>
         </div>
 
@@ -94,10 +97,11 @@
           <div class="col-items">1 Burger, 1 Fries</div>
           <div class="col-total">₱120</div>
           <div class="col-date">Aug 31, 2025</div>
-          <div class="col-status"><span class="status-badge delivery">Out for Delivery</span></div>
+          <div class="col-status"><span class="status-badge delivery">Completed</span></div>
           <div class="col-actions">
-            <button class="action-btn view-btn">View</button>
-            <button class="action-btn edit-btn">Update</button>
+            <div class="action-buttons">
+              <button class="view-btn" onclick="viewOrderDetails('ORD-1023')">View</button>
+            </div>
           </div>
         </div>
 
@@ -109,8 +113,9 @@
           <div class="col-date">Aug 31, 2025</div>
           <div class="col-status"><span class="status-badge completed">Completed</span></div>
           <div class="col-actions">
-            <button class="action-btn view-btn">View</button>
-            <button class="action-btn edit-btn">Update</button>
+            <div class="action-buttons">
+              <button class="view-btn" onclick="viewOrderDetails('ORD-1022')">View</button>
+            </div>
           </div>
         </div>
       </div>
@@ -123,13 +128,86 @@
     </div>
   </main>
 
-  <!-- Order Detail Modal (hidden by default) -->
+  <!-- Order History Modal -->
+  <div class="modal" id="historyModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('historyModal')">&times;</span>
+      <h2>Order History</h2>
+      <div class="order-history">
+        <div class="history-filters">
+          <select id="customerFilter">
+            <option value="">All Customers</option>
+            <option value="Juan Dela Cruz">Juan Dela Cruz</option>
+            <option value="Maria Santos">Maria Santos</option>
+            <option value="Robert Lim">Robert Lim</option>
+            <option value="Anna Reyes">Anna Reyes</option>
+          </select>
+          <input type="date" id="dateFilter">
+          <button class="button" onclick="filterHistory()">Apply Filters</button>
+        </div>
+        <div class="history-table">
+          <div class="table-header">
+            <div class="col-order-id">Order ID</div>
+            <div class="col-customer">Customer</div>
+            <div class="col-items">Items</div>
+            <div class="col-total">Total</div>
+            <div class="col-date">Date</div>
+            <div class="col-status">Status</div>
+          </div>
+          <div class="table-row">
+            <div class="col-order-id">#ORD-1022</div>
+            <div class="col-customer">Anna Reyes</div>
+            <div class="col-items">4 Toasted Siopao</div>
+            <div class="col-total">₱200</div>
+            <div class="col-date">Aug 31, 2025</div>
+            <div class="col-status"><span class="status-badge completed">Completed</span></div>
+          </div>
+          <div class="table-row">
+            <div class="col-order-id">#ORD-1021</div>
+            <div class="col-customer">Juan Dela Cruz</div>
+            <div class="col-items">2 Toasted Siopao</div>
+            <div class="col-total">₱100</div>
+            <div class="col-date">Aug 30, 2025</div>
+            <div class="col-status"><span class="status-badge completed">Completed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Detail Modal -->
   <div class="modal" id="orderModal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Order Details #ORD-1025</h2>
+      <span class="close" onclick="closeModal('orderModal')">&times;</span>
+      <h2>Order Details <span id="modalOrderId"></span></h2>
       <div class="order-details">
-        <!-- Order details would go here -->
+        <div class="customer-info">
+          <h3>Customer Information</h3>
+          <p><strong>Name:</strong> <span id="customerName"></span></p>
+          <p><strong>Contact:</strong> <span id="customerContact"></span></p>
+          <p><strong>Address:</strong> <span id="customerAddress"></span></p>
+        </div>
+        <div class="order-items">
+          <h3>Order Items</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="orderItems">
+              <!-- Will be populated by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+        <div class="order-summary">
+          <p><strong>Total: </strong>₱<span id="orderTotal"></span></p>
+          <p><strong>Status: </strong><span id="orderStatus"></span></p>
+          <p><strong>Order Date: </strong><span id="orderDate"></span></p>
+        </div>
       </div>
     </div>
   </div>

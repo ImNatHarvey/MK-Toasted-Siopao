@@ -477,3 +477,168 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize
     displayAnnouncements();
+
+
+    // Function to view order details
+    function viewOrderDetails(orderId) {
+      // In a real application, you would fetch order details from a server
+      // For this example, we'll use mock data
+      const orderDetails = {
+        'ORD-1022': {
+          customer: 'Anna Reyes',
+          contact: '0912-345-6789',
+          address: '123 Main St, Manila',
+          items: [
+            { name: 'Toasted Siopao', quantity: 4, price: 50 }
+          ],
+          total: 200,
+          status: 'Completed',
+          date: 'Aug 31, 2025'
+        },
+        'ORD-1023': {
+          customer: 'Robert Lim',
+          contact: '0917-890-1234',
+          address: '456 Oak St, Quezon City',
+          items: [
+            { name: 'Burger', quantity: 1, price: 70 },
+            { name: 'Fries', quantity: 1, price: 50 }
+          ],
+          total: 120,
+          status: 'Out for Delivery',
+          date: 'Aug 31, 2025'
+        },
+        'ORD-1024': {
+          customer: 'Maria Santos',
+          contact: '0918-765-4321',
+          address: '789 Pine St, Makati',
+          items: [
+            { name: 'Toasted Siopao', quantity: 3, price: 50 },
+            { name: 'Drinks', quantity: 2, price: 45 }
+          ],
+          total: 240,
+          status: 'Pending',
+          date: 'Sep 1, 2025'
+        },
+        'ORD-1025': {
+          customer: 'Juan Dela Cruz',
+          contact: '0915-123-4567',
+          address: '321 Elm St, Pasig',
+          items: [
+            { name: 'Toasted Siopao', quantity: 2, price: 50 },
+            { name: 'Fries', quantity: 1, price: 50 }
+          ],
+          total: 150,
+          status: 'Preparing',
+          date: 'Sep 1, 2025'
+        }
+      };
+      
+      const order = orderDetails[orderId];
+      if (order) {
+        document.getElementById('modalOrderId').textContent = '#' + orderId;
+        document.getElementById('customerName').textContent = order.customer;
+        document.getElementById('customerContact').textContent = order.contact;
+        document.getElementById('customerAddress').textContent = order.address;
+        document.getElementById('orderTotal').textContent = order.total;
+        document.getElementById('orderStatus').textContent = order.status;
+        document.getElementById('orderDate').textContent = order.date;
+        
+        // Populate order items
+        const itemsContainer = document.getElementById('orderItems');
+        itemsContainer.innerHTML = '';
+        order.items.forEach(item => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.quantity}</td>
+            <td>₱${item.price}</td>
+            <td>₱${item.quantity * item.price}</td>
+          `;
+          itemsContainer.appendChild(row);
+        });
+        
+        // Show the modal
+        document.getElementById('orderModal').style.display = 'block';
+      }
+    }
+    
+    // Function to accept an order
+    function acceptOrder(orderId) {
+      if (confirm(`Are you sure you want to accept order ${orderId}?`)) {
+        // In a real application, you would send a request to the server
+        alert(`Order ${orderId} has been accepted.`);
+        // Update the UI accordingly
+        const statusElement = document.querySelector(`.table-row:has(.col-order-id:contains("${orderId}")) .col-status`);
+        if (statusElement) {
+          statusElement.innerHTML = '<span class="status-badge preparing">Preparing</span>';
+          
+          // Update action buttons
+          const actionsElement = document.querySelector(`.table-row:has(.col-order-id:contains("${orderId}")) .col-actions`);
+          if (actionsElement) {
+            actionsElement.innerHTML = `
+              <div class="action-buttons">
+                <button class="view-btn" onclick="viewOrderDetails('${orderId}')">View</button>
+              </div>
+            `;
+          }
+        }
+      }
+    }
+    
+    // Function to reject an order
+    function rejectOrder(orderId) {
+      if (confirm(`Are you sure you want to reject order ${orderId}?`)) {
+        // In a real application, you would send a request to the server
+        alert(`Order ${orderId} has been rejected.`);
+        // Update the UI accordingly
+        const statusElement = document.querySelector(`.table-row:has(.col-order-id:contains("${orderId}")) .col-status`);
+        if (statusElement) {
+          statusElement.innerHTML = '<span class="status-badge cancelled">Cancelled</span>';
+          
+          // Update action buttons
+          const actionsElement = document.querySelector(`.table-row:has(.col-order-id:contains("${orderId}")) .col-actions`);
+          if (actionsElement) {
+            actionsElement.innerHTML = `
+              <div class="action-buttons">
+                <button class="view-btn" onclick="viewOrderDetails('${orderId}')">View</button>
+              </div>
+            `;
+          }
+        }
+      }
+    }
+    
+    // Function to view order history
+    function viewOrderHistory() {
+      document.getElementById('historyModal').style.display = 'block';
+    }
+    
+    // Function to close modals
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+    
+    // Function to filter history (placeholder)
+    function filterHistory() {
+      alert('Filter functionality would be implemented here.');
+    }
+    
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+      const modals = document.getElementsByClassName('modal');
+      for (let i = 0; i < modals.length; i++) {
+        if (event.target == modals[i]) {
+          modals[i].style.display = 'none';
+        }
+      }
+    };
+    
+    // Add view history button to page header
+    document.addEventListener('DOMContentLoaded', function() {
+      const headerActions = document.querySelector('.header-actions');
+      const viewHistoryBtn = document.createElement('button');
+      viewHistoryBtn.className = 'button';
+      viewHistoryBtn.textContent = 'View History';
+      viewHistoryBtn.onclick = viewOrderHistory;
+      headerActions.appendChild(viewHistoryBtn);
+    });
